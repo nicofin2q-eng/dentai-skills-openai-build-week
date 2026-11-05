@@ -1,0 +1,24 @@
+{
+  "brand": "SEDDAMChile",
+  "canvas": { "width": 1080, "height": 1920, "fps": 30 },
+  "audio": { "loudness_lufs": -14, "true_peak_db": -1.5 },
+  "silence": { "threshold_db": -35, "min_duration_s": 0.4, "padding_s": 0.1, "fade_s": 0.03 },
+  "captions": {
+    "mode": "phrase",
+    "font": "Inter Medium",
+    "font_size": 84,
+    "text_color": "#FFFFFF",
+    "outline_color": "#202020",
+    "outline_px": 2.5,
+    "box": {
+      "color": "#096B6A",
+      "opacity": 1.0,
+      "corner_radius_px": 18,
+      "padding_x_px": 30,
+      "height_px": 145,
+      "center_y_px": 1440
+    },
+    "reference": "Captura de CapCut entregada por el usuario (2026-11-05)"
+  },
+  "export": { "video_codec": "libx264", "crf": 20, "profile": "high", "pix_fmt": "yuv420p", "audio_codec": "aac", "audio_bitrate": "192k", "faststart": true }
+}
