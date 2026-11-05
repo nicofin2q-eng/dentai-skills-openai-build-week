@@ -1,0 +1,8 @@
+# Videos y salidas no se versionan: viven en el celular / Drive
+*.mp4
+*.mov
+*.m4v
+*.mkv
+entrada/
+salida/
+__pycache__/
