@@ -119,12 +119,17 @@ def rounded_rect(x0, y0, x1, y1, r):
             f"l {x0} {y0 + r} b {x0} {y0} {x0} {y0} {x0 + r} {y0}")
 
 
-def main():
-    transcript, brand_path, out = sys.argv[1:4]
-    brand = json.loads(Path(brand_path).read_text(encoding="utf-8"))
+def build(segments, brand, out):
+    """Write brand-styled ASS captions for Whisper segments; return the phrases."""
     cap, canvas = brand["captions"], brand["canvas"]
     box = cap["box"]
-    phrases = group_phrases(json.loads(Path(transcript).read_text(encoding="utf-8")))
+    phrases = group_phrases(segments)
+    for p in phrases:
+        for pattern, fixed in cap.get("replacements", {}).items():
+            p["text"] = re.sub(pattern, fixed, p["text"], flags=re.IGNORECASE)
+    if not phrases:
+        Path(out).write_text(header(cap, canvas) + "\n", encoding="utf-8")
+        return phrases
     widths = measure_widths(phrases, cap, canvas)
 
     cx, cy = canvas["width"] // 2, box["center_y_px"]
@@ -139,7 +144,14 @@ def main():
         lines.append(f"Dialogue: 1,{ts(p['start'])},{ts(p['end'])},Texto,,0,0,0,,"
                      f"{{\\pos({cx},{cy + 3})}}{p['text']}")
     Path(out).write_text("\n".join(lines) + "\n", encoding="utf-8")
-    for p in phrases:
+    return phrases
+
+
+def main():
+    transcript, brand_path, out = sys.argv[1:4]
+    brand = json.loads(Path(brand_path).read_text(encoding="utf-8"))
+    segments = json.loads(Path(transcript).read_text(encoding="utf-8"))
+    for p in build(segments, brand, out):
         print(f"[{p['start']:.2f}-{p['end']:.2f}] {p['text']}")
 
 

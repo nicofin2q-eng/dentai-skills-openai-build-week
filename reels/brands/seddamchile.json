@@ -1,8 +1,31 @@
 {
   "brand": "SEDDAMChile",
-  "canvas": { "width": 1080, "height": 1920, "fps": 30 },
-  "audio": { "loudness_lufs": -14, "true_peak_db": -1.5 },
-  "silence": { "threshold_db": -35, "min_duration_s": 0.4, "padding_s": 0.1, "fade_s": 0.03 },
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30
+  },
+  "audio": {
+    "loudness_lufs": -14,
+    "true_peak_db": -1.5
+  },
+  "silence": {
+    "threshold_db": -35,
+    "min_duration_s": 0.4,
+    "padding_s": 0.1,
+    "fade_s": 0.03,
+    "min_segment_s": 0.25
+  },
+  "zoom": {
+    "punch_in": 1.12,
+    "alternate_cuts": true,
+    "focus_y": 0.35
+  },
+  "whisper": {
+    "model": "small",
+    "language": "es",
+    "prompt": "SEDDAMChile. Doctor Francisco Díaz, cirujano dentista. Odontología, salud bucal, adulto mayor, demencia."
+  },
   "captions": {
     "mode": "phrase",
     "font": "Inter Medium",
@@ -18,7 +41,18 @@
       "height_px": 145,
       "center_y_px": 1440
     },
-    "reference": "Captura de CapCut entregada por el usuario (2026-11-05)"
+    "reference": "Captura de CapCut entregada por el usuario (2026-11-05)",
+    "replacements": {
+      "\\bSe[dt]+[ae][mn],?\\s*Chile\\b": "SEDDAMChile"
+    }
   },
-  "export": { "video_codec": "libx264", "crf": 20, "profile": "high", "pix_fmt": "yuv420p", "audio_codec": "aac", "audio_bitrate": "192k", "faststart": true }
+  "export": {
+    "video_codec": "libx264",
+    "crf": 20,
+    "profile": "high",
+    "pix_fmt": "yuv420p",
+    "audio_codec": "aac",
+    "audio_bitrate": "192k",
+    "faststart": true
+  }
 }
